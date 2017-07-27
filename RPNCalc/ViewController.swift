@@ -15,7 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+  
     //MARK: Properties
 
     @IBOutlet weak var secondButton: UIButton!
@@ -26,6 +27,7 @@ class ViewController: UIViewController {
     
     @IBAction func scroll(_ sender: UIButton) {
         showLeft = !showLeft
+        
         if (showLeft) {
             let offset = CGPoint(x:0, y:0)
             scrollView.setContentOffset(offset, animated: true)
