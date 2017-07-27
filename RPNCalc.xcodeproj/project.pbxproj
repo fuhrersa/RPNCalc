@@ -146,6 +146,7 @@
 				TargetAttributes = {
 					E2BE835D1F2A5D39001CBF4E = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 92CG8R4NDA;
 						ProvisioningStyle = Automatic;
 					};
 					E2BE83711F2A5D39001CBF4E = {
@@ -339,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 92CG8R4NDA;
 				INFOPLIST_FILE = RPNCalc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sfu.RPNCalc;
@@ -351,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 92CG8R4NDA;
 				INFOPLIST_FILE = RPNCalc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sfu.RPNCalc;
