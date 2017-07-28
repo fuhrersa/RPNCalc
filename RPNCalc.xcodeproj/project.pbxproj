@@ -13,6 +13,8 @@
 		E2BE83691F2A5D39001CBF4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BE83681F2A5D39001CBF4E /* Assets.xcassets */; };
 		E2BE836C1F2A5D39001CBF4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BE836A1F2A5D39001CBF4E /* LaunchScreen.storyboard */; };
 		E2BE83771F2A5D39001CBF4E /* RPNCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE83761F2A5D39001CBF4E /* RPNCalcTests.swift */; };
+		E2BE83861F2B93EF001CBF4E /* CalcButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE83851F2B93EF001CBF4E /* CalcButton.swift */; };
+		E2BE83881F2B9CA1001CBF4E /* sqrtxy.png in Resources */ = {isa = PBXBuildFile; fileRef = E2BE83871F2B9CA1001CBF4E /* sqrtxy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		E2BE83721F2A5D39001CBF4E /* RPNCalcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPNCalcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BE83761F2A5D39001CBF4E /* RPNCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPNCalcTests.swift; sourceTree = "<group>"; };
 		E2BE83781F2A5D39001CBF4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2BE83851F2B93EF001CBF4E /* CalcButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcButton.swift; sourceTree = "<group>"; };
+		E2BE83871F2B9CA1001CBF4E /* sqrtxy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sqrtxy.png; path = ../../../../../Volumes/Public/sqrtxy.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				E2BE83681F2A5D39001CBF4E /* Assets.xcassets */,
 				E2BE836A1F2A5D39001CBF4E /* LaunchScreen.storyboard */,
 				E2BE836D1F2A5D39001CBF4E /* Info.plist */,
+				E2BE83851F2B93EF001CBF4E /* CalcButton.swift */,
+				E2BE83871F2B9CA1001CBF4E /* sqrtxy.png */,
 			);
 			path = RPNCalc;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BE83881F2B9CA1001CBF4E /* sqrtxy.png in Resources */,
 				E2BE836C1F2A5D39001CBF4E /* LaunchScreen.storyboard in Resources */,
 				E2BE83691F2A5D39001CBF4E /* Assets.xcassets in Resources */,
 				E2BE83671F2A5D39001CBF4E /* Main.storyboard in Resources */,
@@ -201,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2BE83641F2A5D39001CBF4E /* ViewController.swift in Sources */,
+				E2BE83861F2B93EF001CBF4E /* CalcButton.swift in Sources */,
 				E2BE83621F2A5D39001CBF4E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +417,7 @@
 				E2BE837D1F2A5D39001CBF4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2BE837E1F2A5D39001CBF4E /* Build configuration list for PBXNativeTarget "RPNCalcTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +426,7 @@
 				E2BE83801F2A5D39001CBF4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
