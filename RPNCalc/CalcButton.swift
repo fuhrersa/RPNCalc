@@ -29,6 +29,7 @@ class CalcButton : UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         initColors()
+        backgroundColor = colorReleased
 
 
     }
@@ -36,22 +37,23 @@ class CalcButton : UIButton {
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         initColors()
+        backgroundColor = colorReleased
 
     }
     
     func initColors() {
         
-        if (tag <= 100) { // gray
+        if (tag < 200) { // gray
             colorReleased = UIColor.lightGray.intensity(1.4)
         }
-        else if (tag <= 200) { // blue
+        else if (tag < 300) { // blue
             colorReleased = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         }
-        else if (tag <= 300) { // orange
+        else if (tag < 400) { // orange
             colorReleased = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1)
             
         }
-        else if (tag <= 400){// red
+        else if (tag < 500){// red
             colorReleased = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
         }
         else { // green
