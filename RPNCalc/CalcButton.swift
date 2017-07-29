@@ -30,21 +30,22 @@ class CalcButton : UIButton {
         super.init(frame: frame)
         initColors()
         backgroundColor = colorReleased
-
-
     }
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         initColors()
         backgroundColor = colorReleased
-
     }
     
     func initColors() {
+        setTitleColor(.white, for: UIControlState.normal)
+
         
         if (tag < 200) { // gray
             colorReleased = UIColor.lightGray.intensity(1.4)
+            setTitleColor(.black, for: UIControlState.normal)
+
         }
         else if (tag < 300) { // blue
             colorReleased = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
@@ -58,7 +59,6 @@ class CalcButton : UIButton {
         }
         else { // green
             colorReleased = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        
         }
         
         colorPressed = colorReleased!.intensity(0.8)

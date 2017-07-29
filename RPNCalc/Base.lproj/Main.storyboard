@@ -31,42 +31,86 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmH-81-ohV">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="178.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="w9G-TE-DPs">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sUB-o8-WbR">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="178.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-kT-hNF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JK2-Cx-fBe">
-                                                                <rect key="frame" x="0.0" y="44.5" width="375" height="44.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1w-38-pJu">
-                                                                <rect key="frame" x="0.0" y="89" width="375" height="44.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hQ-wW-JP3">
-                                                                <rect key="frame" x="0.0" y="133.5" width="375" height="45"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0dJ-pm-jMt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFK-xb-Eqo">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="43"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRh-dX-VKx">
+                                                                        <rect key="frame" x="42" y="0.0" width="333" height="43"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bGF-Xr-dYm">
+                                                                <rect key="frame" x="0.0" y="45" width="375" height="43"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2I-Xw-ALq">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="43"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mil-bk-2KH">
+                                                                        <rect key="frame" x="42" y="0.0" width="333" height="43"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9G-TE-DPs">
+                                                                <rect key="frame" x="0.0" y="90" width="375" height="43"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-kT-hNF">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="43"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1w-38-pJu">
+                                                                        <rect key="frame" x="42" y="0.0" width="333" height="43"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="KDz-Hg-Ehn">
+                                                                <rect key="frame" x="0.0" y="135" width="375" height="43.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oni-K9-X1A">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="43.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRI-Vx-O6X">
+                                                                        <rect key="frame" x="42" y="0.0" width="333" height="43.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="w9G-TE-DPs" secondAttribute="bottom" id="0Pn-xq-1FC"/>
-                                                    <constraint firstItem="w9G-TE-DPs" firstAttribute="top" secondItem="WmH-81-ohV" secondAttribute="top" id="KKv-G3-o1S"/>
-                                                    <constraint firstAttribute="trailing" secondItem="w9G-TE-DPs" secondAttribute="trailing" id="LSE-Fz-J4W"/>
-                                                    <constraint firstItem="w9G-TE-DPs" firstAttribute="leading" secondItem="WmH-81-ohV" secondAttribute="leading" id="U71-OY-mVm"/>
+                                                    <constraint firstItem="sUB-o8-WbR" firstAttribute="leading" secondItem="WmH-81-ohV" secondAttribute="leading" id="B7x-QK-gue"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sUB-o8-WbR" secondAttribute="trailing" id="Vnc-hv-yML"/>
+                                                    <constraint firstItem="sUB-o8-WbR" firstAttribute="top" secondItem="WmH-81-ohV" secondAttribute="top" id="oBa-qe-W8V"/>
+                                                    <constraint firstAttribute="bottom" secondItem="sUB-o8-WbR" secondAttribute="bottom" id="zWU-aE-COc"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZE-ZZ-YDe">
@@ -80,22 +124,24 @@
                                                                 <subviews>
                                                                     <button opaque="NO" tag="500" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9c-9E-6kI" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="ENT"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTz-0A-Qpq" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="94" y="0.0" width="93.5" height="93.5"/>
-                                                                        <state key="normal" title="Button" image="sqrtxy.png"/>
+                                                                        <state key="normal" title="2nd">
+                                                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </state>
                                                                         <connections>
                                                                             <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zUb-Ea-Uzs"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U05-ea-ecp" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="187.5" y="0.0" width="94" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="+/-"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3G-RV-tAY" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="&lt;-"/>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -122,19 +168,19 @@
                                                                 <subviews>
                                                                     <button opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1m-Mm-mQp" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="7"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNd-8c-OLj" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="94" y="0.0" width="93.5" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="8"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnN-jQ-1jn" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="187.5" y="0.0" width="94" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="9"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="204" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sb-yz-DsF" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="/"/>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhO-SC-PZc">
                                                                         <rect key="frame" x="375" y="0.0" width="94" height="94"/>
@@ -159,19 +205,19 @@
                                                                 <subviews>
                                                                     <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flw-Gc-syA" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="4"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbn-PD-Czk" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="94" y="0.0" width="93.5" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="5"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQs-cA-ggA" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="187.5" y="0.0" width="94" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="6"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqR-ei-Flf" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="*"/>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryn-1Q-Dj2">
                                                                         <rect key="frame" x="375" y="0.0" width="94" height="93.5"/>
@@ -196,19 +242,19 @@
                                                                 <subviews>
                                                                     <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCj-zA-49r" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="1"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fR-cU-pXS" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="94" y="0.0" width="93.5" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="2"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-YF-lr7" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="187.5" y="0.0" width="94" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="3"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7w-Sx-sdc" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="94"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="-"/>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNO-Z8-5jC">
                                                                         <rect key="frame" x="375" y="0.0" width="94" height="94"/>
@@ -233,19 +279,19 @@
                                                                 <subviews>
                                                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Qk-i7-FAP" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="0"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="112" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzI-nj-nDo" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="94" y="0.0" width="93.5" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="."/>
                                                                     </button>
                                                                     <button opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9n1-5F-Toa" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="187.5" y="0.0" width="94" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="EEX"/>
                                                                     </button>
                                                                     <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rga-4V-3ij" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="93.5"/>
-                                                                        <state key="normal" title="Button"/>
+                                                                        <state key="normal" title="+"/>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5C9-DL-RzP">
                                                                         <rect key="frame" x="375" y="0.0" width="94" height="93.5"/>
@@ -307,7 +353,4 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="sqrtxy.png" width="160" height="160"/>
-    </resources>
 </document>
