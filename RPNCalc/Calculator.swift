@@ -415,7 +415,7 @@ class Calculator {
         do {
             let x = try stack.pop()
             let y = try stack.pop()
-            stack.push(0)
+            stack.push(Darwin.pow(y, 1/x))
         }
         catch let error {
             print(error.localizedDescription)
@@ -450,7 +450,7 @@ class Calculator {
         }
         
         do {
-            try stack.push(Darwin.pow(2.1,stack.pop()))
+            try stack.push(Darwin.exp(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)

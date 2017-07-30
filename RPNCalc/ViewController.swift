@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var showLeft: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateStackDisplay()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -30,6 +31,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var stack2Label: UILabel!
     @IBOutlet weak var stack3Label: UILabel!
     
+    @IBOutlet weak var stack0TitleLabel: UILabel!
+    @IBOutlet weak var stack1TitleLabel: UILabel!
+    @IBOutlet weak var stack2TitleLabel: UILabel!
+    @IBOutlet weak var stack3TitleLabel: UILabel!
+    
     
     //MARK: Actions
     
@@ -45,8 +51,8 @@ class ViewController: UIViewController {
             case(203) : calc.divide()
             case(400) : calc.delete()
             case(110) : calc.changeSign()
-            case(500): calc.enter()
-            case(112): calc.inputDecimalPoint()
+            case(500) : calc.enter()
+            case(112) : calc.inputDecimalPoint()
             case(111) : calc.inputExponent()
             case(205) : calc.sin()
             case(206) : calc.cos()
@@ -55,14 +61,14 @@ class ViewController: UIViewController {
             case(209) : calc.asin()
             case(210) : calc.acos()
             case(211) : calc.atan()
-            case(212): calc.pi()
+            case(212) : calc.pi()
             case(213) : calc.sqrt()
             case(214) : calc.sq()
             case(215) : calc.rt()
             case(216) : calc.pow()
             case(217) : calc.log()
             case(218) : calc.exp10()
-            case(219): calc.ln()
+            case(219) : calc.ln()
             case(220) : calc.exp()
             default : break;
             
@@ -112,23 +118,27 @@ class ViewController: UIViewController {
     func updateStackDisplay() {
         print(calc.state)
         var stackLabels: [UILabel] = [stack0Label, stack1Label, stack2Label, stack3Label]
+        var stackTitleLabels: [UILabel] = [stack0TitleLabel, stack1TitleLabel, stack2TitleLabel, stack3TitleLabel]
         
         if (calc.state == State.idle) {
             for i in 0...3 {
                 stackLabels[i].text = getStackString(index: i)
                 stackLabels[i].textAlignment = NSTextAlignment.right
+                stackTitleLabels[i].text = ""//String(i) + ":"
             }
         }
         else {
             for i in 1...3 {
                 stackLabels[i].text = getStackString(index: i-1)
                 stackLabels[i].textAlignment = NSTextAlignment.right
+                stackTitleLabels[i].text = ""//String(i-1) + ":"
             }
             
             let str = String(calc.mantissa)
             
             stackLabels[0].text = str + "_"
             stack0Label.textAlignment = NSTextAlignment.left
+            stack0TitleLabel.text = ""
             
         }
         

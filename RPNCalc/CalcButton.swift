@@ -30,12 +30,15 @@ class CalcButton : UIButton {
         super.init(frame: frame)
         initColors()
         backgroundColor = colorReleased
+        titleLabel!.font = UIFont.systemFont(ofSize: 25.0)
     }
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         initColors()
         backgroundColor = colorReleased
+        titleLabel!.font = UIFont.systemFont(ofSize: 25.0)
+
     }
     
     func initColors() {
@@ -62,11 +65,43 @@ class CalcButton : UIButton {
         }
         
         colorPressed = colorReleased!.intensity(0.8)
+        
+        // fix labels
+        let myFont = UIFont(name: titleLabel!.font!.fontName, size: titleLabel!.font.pointSize)
+        let superscriptAttributes: [String : Any] = [ NSBaselineOffsetAttributeName: 10, NSFontAttributeName:  myFont! ]
        
+        switch (tag) {
+        case(214):
+            let str = NSMutableAttributedString(string: "x2")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
+        case(215):
+            let str = NSMutableAttributedString(string: "x√y")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 0, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
+        case(216):
+            let str = NSMutableAttributedString(string: "yx")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
+        case(218):
+            let str = NSMutableAttributedString(string: "10x")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 2, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
+        case(220):
+            let str = NSMutableAttributedString(string: "ex")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
+        case(300):
+            let str = NSMutableAttributedString(string: "2nd")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 2))
+            setAttributedTitle(str, for: UIControlState.normal)
+        default: break
+        }
+     
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.1, delay: 0, animations: { () -> Void in
+        UIView.animate(withDuration: 0.05, delay: 0, animations: { () -> Void in
             self.backgroundColor = self.colorPressed })
   
         
@@ -75,7 +110,7 @@ class CalcButton : UIButton {
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.2, delay: 0, animations: { () -> Void in
+        UIView.animate(withDuration: 0.1, delay: 0, animations: { () -> Void in
             self.backgroundColor = self.colorReleased })
 
         
