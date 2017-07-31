@@ -20,29 +20,40 @@ extension UIColor {
         }
     }
 }
-class CalcButton : UIButton {
+class CalcButton : UIButton, UIInputViewAudioFeedback
+{
     
     var colorPressed: UIColor?
     var colorReleased: UIColor?
     
   
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initColors()
-        backgroundColor = colorReleased
-        titleLabel!.font = UIFont.systemFont(ofSize: 25.0)
+   var enableInputClicksWhenVisible: Bool {
+     
+            return true
+        
     }
+    
+    override init(frame: CGRect) {
+        
+        super.init(frame: frame)
+            }
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         initColors()
-        backgroundColor = colorReleased
-        titleLabel!.font = UIFont.systemFont(ofSize: 25.0)
-
     }
     
     func initColors() {
         setTitleColor(.white, for: UIControlState.normal)
+
+        if (tag >= 200 && tag <= 203) {
+            titleLabel!.font = UIFont.systemFont(ofSize: 35.0)
+
+        }
+        else {
+            titleLabel!.font = UIFont.systemFont(ofSize: 25.0)
+
+        }
 
         
         if (tag < 200) { // gray
@@ -76,8 +87,8 @@ class CalcButton : UIButton {
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
             setAttributedTitle(str, for: UIControlState.normal)
         case(215):
-            let str = NSMutableAttributedString(string: "x√y")
-            str.addAttributes(superscriptAttributes, range: NSRange(location: 0, length: 1))
+            let str = NSMutableAttributedString(string: " x√y")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
             setAttributedTitle(str, for: UIControlState.normal)
         case(216):
             let str = NSMutableAttributedString(string: "yx")
@@ -91,17 +102,18 @@ class CalcButton : UIButton {
             let str = NSMutableAttributedString(string: "ex")
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
             setAttributedTitle(str, for: UIControlState.normal)
-        case(300):
-            let str = NSMutableAttributedString(string: "2nd")
-            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 2))
-            setAttributedTitle(str, for: UIControlState.normal)
+
         default: break
         }
-     
+     backgroundColor = colorReleased
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.05, delay: 0, animations: { () -> Void in
+        UIDevice.current.playInputClick()
+
+        UIView.animate(withDuration: 0.05, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: { () ->
+        
+            Void in
             self.backgroundColor = self.colorPressed })
   
         
@@ -110,7 +122,7 @@ class CalcButton : UIButton {
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.1, delay: 0, animations: { () -> Void in
+        UIView.animate(withDuration: 0.1, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: { () -> Void in
             self.backgroundColor = self.colorReleased })
 
         

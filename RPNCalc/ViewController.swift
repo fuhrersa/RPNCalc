@@ -17,6 +17,19 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    open override var shouldAutorotate: Bool {
+        get {
+            return false
+        }
+    }
+    
+        
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        get {
+            return .portrait
+        }
+    }
+    
   
     //MARK: Properties
     
@@ -37,9 +50,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var stack3TitleLabel: UILabel!
     
     
+  
     //MARK: Actions
     
     @IBAction func pushButton(_ sender: CalcButton) {
+
         if (sender.tag >= 100 && sender.tag <= 109) {
             calc.inputDigit(digit: sender.tag-100)
         }
@@ -49,7 +64,7 @@ class ViewController: UIViewController {
             case(201) : calc.subtract()
             case(202) : calc.multiply()
             case(203) : calc.divide()
-            case(400) : calc.delete()
+            case(300) : calc.delete()
             case(110) : calc.changeSign()
             case(500) : calc.enter()
             case(112) : calc.inputDecimalPoint()
@@ -102,7 +117,7 @@ class ViewController: UIViewController {
             return ""
         }
         else {
-            if (abs(calc.stack.get(index)) >= 1e9 || abs(calc.stack.get(index)) < 1e-6) {
+            if ((abs(calc.stack.get(index)) >= 1e9 || abs(calc.stack.get(index)) < 1e-6) && calc.stack.get(index) != 0) {
                 var str = String(format: "%.6E", calc.stack.get(index))
                 if (str.contains("+")) {
                     str.remove(at: str.range(of: "+")!.lowerBound)
