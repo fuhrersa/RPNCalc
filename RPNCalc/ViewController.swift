@@ -11,10 +11,33 @@ import UIKit
 class ViewController: UIViewController {
 
     var showLeft: Bool = true
+    var numberFormatter: NumberFormatter = NumberFormatter()
+    var decimalSeparator: Character = "."
+    var thousandSepartor: Character = ","
+    var calc: Calculator = Calculator(name: "calc")
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        calc.numberFormatter = numberFormatter
+        numberFormatter.minimumFractionDigits = 6
+        updateLocale()
         updateStackDisplay()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func updateLocale() {
+        let str = numberFormatter.decimalSeparator
+        if (str != nil) {
+            let index = str!.index(str!.startIndex, offsetBy: 0)
+            decimalSeparator = str![index]
+            
+        }
+        else {
+           decimalSeparator = "."
+        }
+        
+        calc.decimalSeparator = decimalSeparator
     }
     
     open override var shouldAutorotate: Bool {
@@ -33,7 +56,6 @@ class ViewController: UIViewController {
   
     //MARK: Properties
     
-    let calc: Calculator = Calculator(name: "calc")
 
     @IBOutlet weak var secondButton: UIButton!
 
@@ -112,21 +134,21 @@ class ViewController: UIViewController {
     
     //MARK: functions
     
-    func getStackString(index: Int) -> String {
+    func getStackString(index: Int) -> String? {
         if (calc.stack.depth <= index) {
             return ""
         }
         else {
+            let num: NSNumber = NSNumber(value: calc.stack.get(index))
+            
             if ((abs(calc.stack.get(index)) >= 1e9 || abs(calc.stack.get(index)) < 1e-6) && calc.stack.get(index) != 0) {
-                var str = String(format: "%.6E", calc.stack.get(index))
-                if (str.contains("+")) {
-                    str.remove(at: str.range(of: "+")!.lowerBound)
-                }
-                return str
+                numberFormatter.numberStyle = .scientific
             }
             else {
-                return String(format: "%.6f", calc.stack.get(index))
+                numberFormatter.numberStyle = .decimal
             }
+            return numberFormatter.string(from: num)
+
         }
     }
     

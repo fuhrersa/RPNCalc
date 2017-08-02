@@ -36,6 +36,8 @@ class Calculator {
             }
         }
     }
+    var numberFormatter: NumberFormatter?
+    
     var name: String
     var stack: Stack = Stack(name: "stack")
     var currentInput: Double = 0
@@ -44,7 +46,7 @@ class Calculator {
             if mantissa.contains("E") {
                 state = State.inputExp
             }
-            else if mantissa.contains(".") {
+            else if mantissa.contains(decimalSeparator) {
                 state = State.inputFp
             }
             else if (mantissa.count == 0) {
@@ -58,6 +60,7 @@ class Calculator {
     }
     var sign: Int = 1
     var expSign: Int = 1
+    var decimalSeparator: Character = "."
     
     //MARK: Initialization
     init(name: String) {
@@ -74,7 +77,7 @@ class Calculator {
     
     func inputDecimalPoint() {
         if (state == State.idle || state == State.inputIp) {
-            mantissa.append(".")
+            mantissa.append(decimalSeparator)
             state = State.inputFp
         }
     }
@@ -146,7 +149,7 @@ class Calculator {
         case State.inputExp:
             let c = mantissa.popLast()
             if (c == "E") {
-                if (mantissa.contains(".")) {
+                if (mantissa.contains(decimalSeparator)) {
                     state = State.inputFp
                 }
                 else {
@@ -178,7 +181,7 @@ class Calculator {
             }
         }
         
-        let d: Double? = Double(String(mantissa))
+        let d: Double? = numberFormatter!.number(from: String(mantissa))?.doubleValue
         
         if (d != nil) {
             stack.push(d!)
