@@ -82,16 +82,8 @@ class CalcButton : UIButton, UIInputViewAudioFeedback
         let superscriptAttributes: [String : Any] = [ NSBaselineOffsetAttributeName: 10, NSFontAttributeName:  myFont! ]
        
         switch (tag) {
-        case(214):
-            let str = NSMutableAttributedString(string: "x2")
-            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
-            setAttributedTitle(str, for: UIControlState.normal)
-        case(215):
+        /*case(215):
             let str = NSMutableAttributedString(string: " x√y")
-            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
-            setAttributedTitle(str, for: UIControlState.normal)
-        case(216):
-            let str = NSMutableAttributedString(string: "yx")
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
             setAttributedTitle(str, for: UIControlState.normal)
         case(218):
@@ -101,7 +93,7 @@ class CalcButton : UIButton, UIInputViewAudioFeedback
         case(220):
             let str = NSMutableAttributedString(string: "ex")
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
-            setAttributedTitle(str, for: UIControlState.normal)
+            setAttributedTitle(str, for: UIControlState.normal)*/
 
         default: break
         }
@@ -109,14 +101,12 @@ class CalcButton : UIButton, UIInputViewAudioFeedback
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIDevice.current.playInputClick()
 
         UIView.animate(withDuration: 0.05, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: { () ->
         
             Void in
             self.backgroundColor = self.colorPressed })
   
-        
         super.touchesBegan(touches, with: event)
     }
     

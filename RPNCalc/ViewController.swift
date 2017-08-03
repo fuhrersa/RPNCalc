@@ -26,6 +26,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    
+    
+    
+    
     func updateLocale() {
         let str = numberFormatter.decimalSeparator
         if (str != nil) {
@@ -112,12 +116,12 @@ class ViewController: UIViewController {
             }
         }
         if (sender.tag >= 205 && sender.tag <= 220) {
-            scroll(sender)
+         //   scroll(sender)
         }
         updateStackDisplay()
     }
     
-    
+    /*
     @IBAction func scroll(_ sender: UIButton) {
         showLeft = !showLeft
         
@@ -130,7 +134,7 @@ class ViewController: UIViewController {
             scrollView.setContentOffset(offset, animated: true)
 
         }
-    }
+    }*/
     
     //MARK: functions
     

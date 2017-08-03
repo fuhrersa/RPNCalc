@@ -160,7 +160,7 @@
                                                             <constraint firstAttribute="width" secondItem="HZE-ZZ-YDe" secondAttribute="height" multiplier="4:1" id="xg3-9B-qvS"/>
                                                         </constraints>
                                                     </view>
-                                                    <scrollView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1n-d5-c7u">
+                                                    <scrollView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1n-d5-c7u">
                                                         <rect key="frame" x="0.0" y="272" width="375" height="375"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="HkY-Vj-PFj">
@@ -199,7 +199,6 @@
                                                                                         <state key="normal" title="÷"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1YV-hr-nBB"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="cF3-A2-sSz"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                 </subviews>
@@ -212,7 +211,6 @@
                                                                                         <state key="normal" title="SIN"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zdz-n9-jLL"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="jbk-f4-u1I"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPJ-eZ-fPY" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
@@ -272,7 +270,6 @@
                                                                                         <state key="normal" title="×"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bF5-di-m0W"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="lNC-gR-m4w"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                 </subviews>
@@ -285,7 +282,6 @@
                                                                                         <state key="normal" title="ASIN"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EGa-Ea-o0P"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="1k5-EW-h7I"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" tag="210" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Did-I6-24c" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
@@ -345,7 +341,6 @@
                                                                                         <state key="normal" title="−"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3XX-eJ-uR8"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="iaE-9S-yHk"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                 </subviews>
@@ -358,26 +353,25 @@
                                                                                         <state key="normal" title="√x"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIj-xZ-dIx"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="HV0-sq-29u"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" tag="214" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2k-aG-oph" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                                         <rect key="frame" x="94" y="0.0" width="93" height="93"/>
-                                                                                        <state key="normal" title="SQ"/>
+                                                                                        <state key="normal" title="x²"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wuN-iA-6uv"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" tag="215" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1KR-IZ-xfX" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                                         <rect key="frame" x="188" y="0.0" width="93" height="93"/>
-                                                                                        <state key="normal" title="x√y"/>
+                                                                                        <state key="normal" title="ˣ√y"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="brs-Bw-HFz"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" tag="216" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMq-zX-vl6" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                                         <rect key="frame" x="282" y="0.0" width="93" height="93"/>
-                                                                                        <state key="normal" title="POW"/>
+                                                                                        <state key="normal" title="yˣ"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eFL-Z9-vXN"/>
                                                                                         </connections>
@@ -418,7 +412,6 @@
                                                                                         <state key="normal" title="+"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1K5-W7-b05"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="YgX-b1-xbl"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                 </subviews>
@@ -431,12 +424,11 @@
                                                                                         <state key="normal" title="LOG"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xtg-q4-Bjk"/>
-                                                                                            <action selector="scroll:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="oET-m0-dsb"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" tag="218" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDF-xD-ZKC" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                                         <rect key="frame" x="94" y="0.0" width="93" height="93"/>
-                                                                                        <state key="normal" title="10^x"/>
+                                                                                        <state key="normal" title="10ˣ"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DMd-F4-S72"/>
                                                                                         </connections>
@@ -450,7 +442,7 @@
                                                                                     </button>
                                                                                     <button opaque="NO" tag="220" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1X-kR-x4v" customClass="CalcButton" customModule="RPNCalc" customModuleProvider="target">
                                                                                         <rect key="frame" x="282" y="0.0" width="93" height="93"/>
-                                                                                        <state key="normal" title="e^x"/>
+                                                                                        <state key="normal" title="eˣ"/>
                                                                                         <connections>
                                                                                             <action selector="pushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ENl-dj-kUV"/>
                                                                                         </connections>
@@ -466,6 +458,7 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="HkY-Vj-PFj" secondAttribute="bottom" id="9pv-4R-1eW"/>
                                                             <constraint firstAttribute="trailing" secondItem="HkY-Vj-PFj" secondAttribute="trailing" id="NNt-fi-CzB"/>
