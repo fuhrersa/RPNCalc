@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 extension UIColor {
     func intensity (_ percentage: CGFloat) -> UIColor? {
@@ -20,18 +21,14 @@ extension UIColor {
         }
     }
 }
-class CalcButton : UIButton, UIInputViewAudioFeedback
+class CalcButton : UIButton
 {
     
     var colorPressed: UIColor?
     var colorReleased: UIColor?
     
   
-   var enableInputClicksWhenVisible: Bool {
-     
-            return true
-        
-    }
+    let sound : SystemSoundID = 1104
     
     override init(frame: CGRect) {
         
@@ -78,12 +75,14 @@ class CalcButton : UIButton, UIInputViewAudioFeedback
         colorPressed = colorReleased!.intensity(0.8)
         
         // fix labels
-        let myFont = UIFont(name: titleLabel!.font!.fontName, size: titleLabel!.font.pointSize)
-        let superscriptAttributes: [String : Any] = [ NSBaselineOffsetAttributeName: 10, NSFontAttributeName:  myFont! ]
+        let pointSize = titleLabel!.font.pointSize
+        let font = UIFont.systemFont(ofSize: pointSize*0.7, weight: UIFontWeightMedium)
+        
+        let superscriptAttributes: [String : Any] = [ NSBaselineOffsetAttributeName: pointSize*0.4, NSFontAttributeName: font ]
        
         switch (tag) {
-        /*case(215):
-            let str = NSMutableAttributedString(string: " x√y")
+        case(215):
+            let str = NSMutableAttributedString(string: " x√y ")
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
             setAttributedTitle(str, for: UIControlState.normal)
         case(218):
@@ -93,7 +92,16 @@ class CalcButton : UIButton, UIInputViewAudioFeedback
         case(220):
             let str = NSMutableAttributedString(string: "ex")
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
-            setAttributedTitle(str, for: UIControlState.normal)*/
+            setAttributedTitle(str, for: UIControlState.normal)
+        case(216):
+            let str = NSMutableAttributedString(string: "yx")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
+            
+        case(214):
+            let str = NSMutableAttributedString(string: "x2")
+            str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
+            setAttributedTitle(str, for: UIControlState.normal)
 
         default: break
         }
@@ -102,6 +110,7 @@ class CalcButton : UIButton, UIInputViewAudioFeedback
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
+        AudioServicesPlaySystemSound(sound)
         UIView.animate(withDuration: 0.05, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: { () ->
         
             Void in
