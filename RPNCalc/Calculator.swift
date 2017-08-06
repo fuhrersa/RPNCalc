@@ -176,13 +176,13 @@ class Calculator {
                 mantissa.append("0")
             }
         case State.error:
-            break
+            return
         }
         
-        let d: Double? = numberFormatter!.number(from: String(mantissa))?.doubleValue
+        guard let d = numberFormatter!.number(from: String(mantissa))?.doubleValue else { return }
         
         do {
-            try stack.push(d!)
+            try stack.push(d)
             mantissa.removeAll()
             state = State.idle
         }
@@ -193,6 +193,9 @@ class Calculator {
     }
     
     func checkArg(num: Int, errorString: String) -> Bool {
+        
+        guard (state != State.error) else { return false}
+        
         if (state != State.idle) {
             enter()
         }
