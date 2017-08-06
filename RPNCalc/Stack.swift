@@ -10,6 +10,7 @@ import UIKit
 
 enum StackError : Error {
     case emptyStack
+    case invalidResult
 }
 
 class Stack {
@@ -38,7 +39,9 @@ class Stack {
         return stack.removeFirst()
     }
     
-    func push(_ value: Double) {
+    func push(_ value: Double) throws {
+        guard value.isFinite else {throw StackError.invalidResult}
+        
         stack.insert(value, at: 0)
         if (depth > maxSize) {
             stack.removeLast()

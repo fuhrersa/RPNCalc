@@ -23,12 +23,36 @@ class ViewController: UIViewController {
         numberFormatter.minimumFractionDigits = 6
         updateLocale()
         updateStackDisplay()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(calc.stack.depth, forKey: "depth")
+        
+        for i in 0...calc.stack.depth-1 {
+            coder.encode(calc.stack.get(i), forKey: "stack\(i)")
+        }
+        
+        print("saved state")
+        super.encodeRestorableState(with: coder)
+    }
     
+    override func decodeRestorableState(with coder: NSCoder) {
+        
+        let depth = coder.decodeInteger(forKey: "depth")
+        
+        for i in 0...depth-1 {
+            let value = coder.decodeDouble(forKey: "stack\(depth-1-i)")
+            try? calc.stack.push(value)
+        }
+        print("restored state")
+        updateStackDisplay()
+        super.decodeRestorableState(with: coder)
+    }
     
+    override func applicationFinishedRestoringState() {
+        return
+    }
     
     func updateLocale() {
         let str = numberFormatter.decimalSeparator
@@ -60,27 +84,17 @@ class ViewController: UIViewController {
   
     //MARK: Properties
     
-
-    @IBOutlet weak var secondButton: UIButton!
-
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var stack0Label: UILabel!
     @IBOutlet weak var stack1Label: UILabel!
     @IBOutlet weak var stack2Label: UILabel!
     @IBOutlet weak var stack3Label: UILabel!
+   
     
-    @IBOutlet weak var stack0TitleLabel: UILabel!
-    @IBOutlet weak var stack1TitleLabel: UILabel!
-    @IBOutlet weak var stack2TitleLabel: UILabel!
-    @IBOutlet weak var stack3TitleLabel: UILabel!
-    
-    
-  
     //MARK: Actions
     
     @IBAction func pushButton(_ sender: CalcButton) {
-
         if (sender.tag >= 100 && sender.tag <= 109) {
             calc.inputDigit(digit: sender.tag-100)
         }
@@ -121,20 +135,7 @@ class ViewController: UIViewController {
         updateStackDisplay()
     }
     
-    /*
-    @IBAction func scroll(_ sender: UIButton) {
-        showLeft = !showLeft
-        
-        if (showLeft) {
-            let offset = CGPoint(x:0, y:0)
-            scrollView.setContentOffset(offset, animated: true)
-        }
-        else {
-            let offset = CGPoint(x: scrollView.contentSize.width/2, y:0)
-            scrollView.setContentOffset(offset, animated: true)
-
-        }
-    }*/
+   
     
     //MARK: functions
     
@@ -159,27 +160,30 @@ class ViewController: UIViewController {
     func updateStackDisplay() {
         print(calc.state)
         var stackLabels: [UILabel] = [stack0Label, stack1Label, stack2Label, stack3Label]
-        var stackTitleLabels: [UILabel] = [stack0TitleLabel, stack1TitleLabel, stack2TitleLabel, stack3TitleLabel]
         
         if (calc.state == State.idle) {
             for i in 0...3 {
                 stackLabels[i].text = getStackString(index: i)
                 stackLabels[i].textAlignment = NSTextAlignment.right
-                stackTitleLabels[i].text = ""//String(i) + ":"
             }
         }
         else {
             for i in 1...3 {
                 stackLabels[i].text = getStackString(index: i-1)
                 stackLabels[i].textAlignment = NSTextAlignment.right
-                stackTitleLabels[i].text = ""//String(i-1) + ":"
             }
             
             let str = String(calc.mantissa)
             
-            stackLabels[0].text = str + "_"
-            stack0Label.textAlignment = NSTextAlignment.left
-            stack0TitleLabel.text = ""
+            if (calc.state == State.error) {
+                stackLabels[0].text = "Error"
+                stack0Label.textAlignment = NSTextAlignment.right
+            }
+            else {
+                stackLabels[0].text = str + "_"
+                stack0Label.textAlignment = NSTextAlignment.left
+            }
+            
             
         }
         

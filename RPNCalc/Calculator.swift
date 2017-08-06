@@ -13,6 +13,7 @@ enum State {
     case inputIp
     case inputFp
     case inputExp
+    case error
 }
 
 class Calculator {
@@ -26,6 +27,7 @@ class Calculator {
             }
         }
     }
+    
     
     //MARK: Properties
     var state: State {
@@ -41,26 +43,11 @@ class Calculator {
     var name: String
     var stack: Stack = Stack(name: "stack")
     var currentInput: Double = 0
-    var mantissa: [Character] {
-        didSet {
-            if mantissa.contains("E") {
-                state = State.inputExp
-            }
-            else if mantissa.contains(decimalSeparator) {
-                state = State.inputFp
-            }
-            else if (mantissa.count == 0) {
-                state = State.idle
-                sign = 1
-            }
-            else {
-                state = State.inputIp
-            }
-        }
-    }
+    var mantissa: [Character]
     var sign: Int = 1
     var expSign: Int = 1
     var decimalSeparator: Character = "."
+    
     
     //MARK: Initialization
     init(name: String) {
@@ -70,13 +57,15 @@ class Calculator {
     }
     
     
-    
     func inputDigit(digit: Int) {
+        if (state == State.idle || state == State.error) {
+            state = State.inputIp
+        }
         mantissa.append(Character("\(digit)"))
     }
     
     func inputDecimalPoint() {
-        if (state == State.idle || state == State.inputIp) {
+        if (state == State.idle || state == State.inputIp || state == State.error) {
             mantissa.append(decimalSeparator)
             state = State.inputFp
         }
@@ -84,7 +73,7 @@ class Calculator {
     
     func inputExponent() {
         switch (state) {
-        case State.idle:
+        case State.idle, State.error:
             mantissa.append("1")
             mantissa.append("E")
             state = State.inputExp
@@ -97,11 +86,13 @@ class Calculator {
         
     }
     
+
     
     func changeSign() {
         switch (state) {
         case State.idle:
-            try? stack.push(-stack.pop())
+            guard checkArg(num: 1, errorString: "CHS Error: Too few arguments") else { return }
+            try! stack.push(-stack.pop())
         case State.inputFp, State.inputIp:
             if ( mantissa.first == "-") {
                 mantissa.remove(at: 0)
@@ -118,6 +109,8 @@ class Calculator {
             else {
                 mantissa.insert("-", at: i)
             }
+        
+        default: break
         }
     }
     
@@ -156,6 +149,9 @@ class Calculator {
                     state = State.inputIp
                 }
             }
+        case State.error:
+            state = State.idle
+            mantissa.removeAll()
         }
     }
     
@@ -164,7 +160,7 @@ class Calculator {
         switch(state) {
         case State.idle:
             if (stack.depth > 0) {
-                stack.push(stack.get(0))
+                try! stack.push(stack.get(0))
             }
             return
         case State.inputExp:
@@ -179,19 +175,21 @@ class Calculator {
             if (mantissa.last == ".") {
                 mantissa.append("0")
             }
+        case State.error:
+            break
         }
         
         let d: Double? = numberFormatter!.number(from: String(mantissa))?.doubleValue
         
-        if (d != nil) {
-            stack.push(d!)
+        do {
+            try stack.push(d!)
             mantissa.removeAll()
             state = State.idle
         }
-        else {
-            print("Invalid input")
+        catch let error {
+            print(error.localizedDescription)
+            state = State.error
         }
-        
     }
     
     func checkArg(num: Int, errorString: String) -> Bool {
@@ -210,204 +208,136 @@ class Calculator {
     }
     
     func add() {
-        guard checkArg(num: 2, errorString: "ADD Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            try stack.push(stack.pop() + stack.pop())
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 2, errorString: "ADD Error: Too few arguments") else { return }
+        try! stack.push(stack.pop() + stack.pop())
     }
     
     func subtract() {
-        guard checkArg(num: 2, errorString: "SUB Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            let a = try stack.pop()
-            let b = try stack.pop()
-            stack.push(b - a)
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 2, errorString: "SUB Error: Too few arguments") else { return }
+        try! stack.push(-stack.pop() + stack.pop())
     }
     
     func multiply() {
-        guard checkArg(num: 2, errorString: "MUL Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            let a = try stack.pop()
-            let b = try stack.pop()
-            stack.push(a*b)
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 2, errorString: "MUL Error: Too few arguments") else { return }
+        try! stack.push(stack.pop() * stack.pop())
     }
     
     func divide() {
-        guard checkArg(num: 2, errorString: "DIV Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 2, errorString: "DIV Error: Too few arguments") else { return }
         do {
             let a = try stack.pop()
             let b = try stack.pop()
-            stack.push(b/a)
+            try stack.push(b/a)
         }
-        catch let error {
+        catch let error { // catch divide-by-0
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func sin() {
-        guard checkArg(num: 1, errorString: "SIN Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            try stack.push(Darwin.sin(stack.pop()))
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 1, errorString: "SIN Error: Too few arguments") else { return }
+        try! stack.push(Darwin.sin(stack.pop()))
     }
     
     func cos() {
-        guard checkArg(num: 1, errorString: "COS Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            try stack.push(Darwin.cos(stack.pop()))
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 1, errorString: "COS Error: Too few arguments") else { return }
+        try! stack.push(Darwin.cos(stack.pop()))
     }
     
     func tan() {
-        guard checkArg(num: 1, errorString: "TAN Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            try stack.push(Darwin.tan(stack.pop()))
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 1, errorString: "TAN Error: Too few arguments") else { return }
+        try! stack.push(Darwin.tan(stack.pop()))
     }
     
     func asin() {
-        guard checkArg(num: 1, errorString: "ASIN Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "ASIN Error: Too few arguments") else { return }
         
         do {
             try stack.push(Darwin.asin(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func acos() {
-        guard checkArg(num: 1, errorString: "ACOS Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "ACOS Error: Too few arguments") else { return }
         
         do {
             try stack.push(Darwin.acos(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func atan() {
-        guard checkArg(num: 1, errorString: "ATAN Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "ATAN Error: Too few arguments") else { return }
         
         do {
             try stack.push(Darwin.atan(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func sqrt() {
-        guard checkArg(num: 1, errorString: "SQRT Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "SQRT Error: Too few arguments") else { return }
         
         do {
             try stack.push(Darwin.sqrt(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func log() {
-        guard checkArg(num: 1, errorString: "LOG Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "LOG Error: Too few arguments") else { return }
         
         do {
             try stack.push(Darwin.log10(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func ln() {
-        guard checkArg(num: 1, errorString: "LN Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "LN Error: Too few arguments") else { return }
         
         do {
             try stack.push(Darwin.log(stack.pop()))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func inv() {
-        guard checkArg(num: 1, errorString: "INV Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 1, errorString: "INV Error: Too few arguments") else { return }
         
         do {
             try stack.push(1/stack.pop())
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func sq() {
-        guard checkArg(num: 1, errorString: "SQ Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            let x = try stack.pop()
-            stack.push(x*x)
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 1, errorString: "SQ Error: Too few arguments") else { return }
+        let x = try! stack.pop()
+        try? stack.push(x*x)
     }
     
     func rt() {
@@ -418,63 +348,36 @@ class Calculator {
         do {
             let x = try stack.pop()
             let y = try stack.pop()
-            stack.push(Darwin.pow(y, 1/x))
+            try stack.push(Darwin.pow(y, 1/x))
         }
         catch let error {
             print(error.localizedDescription)
+            state = State.error
         }
     }
     
     func pow() {
-        guard checkArg(num: 2, errorString: "POW Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 2, errorString: "POW Error: Too few arguments") else { return }
         
-        do {
-            let x = try stack.pop()
-            let y = try stack.pop()
-            stack.push(Darwin.pow(y, x))
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        let x = try! stack.pop()
+        let y = try! stack.pop()
+        try! stack.push(Darwin.pow(y, x))
     }
     
     func pi() {
-        guard checkArg(num: 0, errorString: "") else {
-            return
-        }
-        stack.push(Double.pi)
+        guard checkArg(num: 0, errorString: "") else { return }
+        try! stack.push(Double.pi)
     }
     
     func exp() {
-        guard checkArg(num: 1, errorString: "EXP Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            try stack.push(Darwin.exp(stack.pop()))
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 1, errorString: "EXP Error: Too few arguments") else { return }
+        try! stack.push(Darwin.exp(stack.pop()))
     }
     
     func exp10() {
-        guard checkArg(num: 1, errorString: "EXP10 Error: Too few arguments") else {
-            return
-        }
-        
-        do {
-            try stack.push(Darwin.pow(10,stack.pop()))
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
+        guard checkArg(num: 1, errorString: "EXP10 Error: Too few arguments") else { return }
+        try! stack.push(Darwin.pow(10,stack.pop()))
     }
-    
-    
-    
     
     
 }
