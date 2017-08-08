@@ -24,46 +24,39 @@ extension UIColor {
 class CalcButton : UIButton
 {
     
+    //MARK: Properties
     var colorPressed: UIColor?
     var colorReleased: UIColor?
-    
-  
     let sound : SystemSoundID = 1104
-    
-    override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-            }
-    
+   
+    //MARK: Initializaion
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         initColors()
     }
     
+    
+    //MARK: Functions
     func initColors() {
         setTitleColor(.white, for: UIControlState.normal)
-
+        
         if (tag >= 200 && tag <= 203) {
             titleLabel!.font = UIFont.systemFont(ofSize: 35.0)
-
         }
         else {
             titleLabel!.font = UIFont.systemFont(ofSize: 25.0)
-
         }
-
         
         if (tag < 200) { // gray
             colorReleased = UIColor.lightGray.intensity(1.4)
             setTitleColor(.black, for: UIControlState.normal)
-
+            
         }
         else if (tag < 300) { // blue
             colorReleased = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         }
         else if (tag < 400) { // orange
             colorReleased = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1)
-            
         }
         else if (tag < 500){// red
             colorReleased = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
@@ -79,7 +72,7 @@ class CalcButton : UIButton
         let font = UIFont.systemFont(ofSize: pointSize*0.7, weight: UIFontWeightMedium)
         
         let superscriptAttributes: [String : Any] = [ NSBaselineOffsetAttributeName: pointSize*0.4, NSFontAttributeName: font ]
-       
+        
         switch (tag) {
         case(215):
             let str = NSMutableAttributedString(string: " x√y ")
@@ -102,31 +95,30 @@ class CalcButton : UIButton
             let str = NSMutableAttributedString(string: "x2")
             str.addAttributes(superscriptAttributes, range: NSRange(location: 1, length: 1))
             setAttributedTitle(str, for: UIControlState.normal)
-
+            
         default: break
         }
-     backgroundColor = colorReleased
+        backgroundColor = colorReleased
     }
     
+    
+    //MARK: Actions
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
         AudioServicesPlaySystemSound(sound)
         UIView.animate(withDuration: 0.05, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: { () ->
-        
+            
             Void in
             self.backgroundColor = self.colorPressed })
-  
+        
         super.touchesBegan(touches, with: event)
     }
-    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: 0.1, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: { () -> Void in
             self.backgroundColor = self.colorReleased })
-
         
         super.touchesEnded(touches, with: event)
     }
- 
     
 }

@@ -18,34 +18,13 @@ enum State {
 
 class Calculator {
     
-    struct exponent {
-        var sign: Int
-        var value: [Character] {
-            didSet {
-                if value.isEmpty {
-                }
-            }
-        }
-    }
-    
     
     //MARK: Properties
-    var state: State {
-        didSet {
-            if (state == State.idle) {
-                sign = 1
-                expSign = 1
-            }
-        }
-    }
+    var state: State
     var numberFormatter: NumberFormatter?
-    
     var name: String
     var stack: Stack = Stack(name: "stack")
-    var currentInput: Double = 0
     var mantissa: [Character]
-    var sign: Int = 1
-    var expSign: Int = 1
     var decimalSeparator: Character = "."
     
     
@@ -57,6 +36,7 @@ class Calculator {
     }
     
     
+    //MARK: Input funtions
     func inputDigit(digit: Int) {
         if (state == State.idle || state == State.error) {
             state = State.inputIp
@@ -83,10 +63,8 @@ class Calculator {
         default:
             break
         }
-        
     }
     
-
     
     func changeSign() {
         switch (state) {
@@ -193,7 +171,6 @@ class Calculator {
     }
     
     func checkArg(num: Int, errorString: String) -> Bool {
-        
         guard (state != State.error) else { return false}
         
         if (state != State.idle) {
@@ -207,7 +184,6 @@ class Calculator {
         else {
             return true
         }
-        
     }
     
     func add() {
@@ -344,9 +320,7 @@ class Calculator {
     }
     
     func rt() {
-        guard checkArg(num: 2, errorString: "RT Error: Too few arguments") else {
-            return
-        }
+        guard checkArg(num: 2, errorString: "RT Error: Too few arguments") else { return }
         
         do {
             let x = try stack.pop()
@@ -381,6 +355,5 @@ class Calculator {
         guard checkArg(num: 1, errorString: "EXP10 Error: Too few arguments") else { return }
         try! stack.push(Darwin.pow(10,stack.pop()))
     }
-    
     
 }

@@ -10,13 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK: Properties
     var showLeft: Bool = true
     var numberFormatter: NumberFormatter = NumberFormatter()
     var decimalSeparator: Character = "."
-    var thousandSepartor: Character = ","
     var calc: Calculator = Calculator(name: "calc")
+   
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stack0Label: UILabel!
+    @IBOutlet weak var stack1Label: UILabel!
+    @IBOutlet weak var stack2Label: UILabel!
+    @IBOutlet weak var stack3Label: UILabel!
     
- 
+    //MARK: functions
+
     override func viewDidLoad() {
         super.viewDidLoad()
         calc.numberFormatter = numberFormatter
@@ -37,6 +44,7 @@ class ViewController: UIViewController {
         super.encodeRestorableState(with: coder)
     }
     
+    
     override func decodeRestorableState(with coder: NSCoder) {
         
         let depth = coder.decodeInteger(forKey: "depth")
@@ -45,21 +53,23 @@ class ViewController: UIViewController {
             let value = coder.decodeDouble(forKey: "stack\(depth-1-i)")
             try? calc.stack.push(value)
         }
+        calc.state = State.idle
         print("restored state")
         updateStackDisplay()
         super.decodeRestorableState(with: coder)
     }
     
+    
     override func applicationFinishedRestoringState() {
         return
     }
+    
     
     func updateLocale() {
         let str = numberFormatter.decimalSeparator
         if (str != nil) {
             let index = str!.index(str!.startIndex, offsetBy: 0)
             decimalSeparator = str![index]
-            
         }
         else {
            decimalSeparator = "."
@@ -67,6 +77,7 @@ class ViewController: UIViewController {
         
         calc.decimalSeparator = decimalSeparator
     }
+    
     
     open override var shouldAutorotate: Bool {
         get {
@@ -81,19 +92,56 @@ class ViewController: UIViewController {
         }
     }
     
-  
-    //MARK: Properties
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    func getStackString(index: Int) -> String? {
+        if (calc.stack.depth <= index) {
+            return ""
+        }
+        else {
+            let num: NSNumber = NSNumber(value: calc.stack.get(index))
+            
+            if ((abs(calc.stack.get(index)) >= 1e9 || abs(calc.stack.get(index)) < 1e-6) && calc.stack.get(index) != 0) {
+                numberFormatter.numberStyle = .scientific
+            }
+            else {
+                numberFormatter.numberStyle = .decimal
+            }
+            return numberFormatter.string(from: num)
+        }
+    }
     
-    @IBOutlet weak var stack0Label: UILabel!
-    @IBOutlet weak var stack1Label: UILabel!
-    @IBOutlet weak var stack2Label: UILabel!
-    @IBOutlet weak var stack3Label: UILabel!
-   
+    
+    func updateStackDisplay() {
+        print(calc.state)
+        var stackLabels: [UILabel] = [stack0Label, stack1Label, stack2Label, stack3Label]
+        
+        if (calc.state == State.idle) {
+            for i in 0...3 {
+                stackLabels[i].text = getStackString(index: i)
+                stackLabels[i].textAlignment = NSTextAlignment.right
+            }
+        }
+        else {
+            for i in 1...3 {
+                stackLabels[i].text = getStackString(index: i-1)
+                stackLabels[i].textAlignment = NSTextAlignment.right
+            }
+            
+            let str = String(calc.mantissa)
+            
+            if (calc.state == State.error) {
+                stackLabels[0].text = "Error"
+                stack0Label.textAlignment = NSTextAlignment.right
+            }
+            else {
+                stackLabels[0].text = str + "_"
+                stack0Label.textAlignment = NSTextAlignment.left
+            }
+        }
+    }
+    
     
     //MARK: Actions
-    
     @IBAction func pushButton(_ sender: CalcButton) {
         if (sender.tag >= 100 && sender.tag <= 109) {
             calc.inputDigit(digit: sender.tag-100)
@@ -126,67 +174,11 @@ class ViewController: UIViewController {
             case(219) : calc.ln()
             case(220) : calc.exp()
             default : break;
-            
+                
             }
         }
-        if (sender.tag >= 205 && sender.tag <= 220) {
-         //   scroll(sender)
-        }
+        
         updateStackDisplay()
-    }
-    
-   
-    
-    //MARK: functions
-    
-    func getStackString(index: Int) -> String? {
-        if (calc.stack.depth <= index) {
-            return ""
-        }
-        else {
-            let num: NSNumber = NSNumber(value: calc.stack.get(index))
-            
-            if ((abs(calc.stack.get(index)) >= 1e9 || abs(calc.stack.get(index)) < 1e-6) && calc.stack.get(index) != 0) {
-                numberFormatter.numberStyle = .scientific
-            }
-            else {
-                numberFormatter.numberStyle = .decimal
-            }
-            return numberFormatter.string(from: num)
-
-        }
-    }
-    
-    func updateStackDisplay() {
-        print(calc.state)
-        var stackLabels: [UILabel] = [stack0Label, stack1Label, stack2Label, stack3Label]
-        
-        if (calc.state == State.idle) {
-            for i in 0...3 {
-                stackLabels[i].text = getStackString(index: i)
-                stackLabels[i].textAlignment = NSTextAlignment.right
-            }
-        }
-        else {
-            for i in 1...3 {
-                stackLabels[i].text = getStackString(index: i-1)
-                stackLabels[i].textAlignment = NSTextAlignment.right
-            }
-            
-            let str = String(calc.mantissa)
-            
-            if (calc.state == State.error) {
-                stackLabels[0].text = "Error"
-                stack0Label.textAlignment = NSTextAlignment.right
-            }
-            else {
-                stackLabels[0].text = str + "_"
-                stack0Label.textAlignment = NSTextAlignment.left
-            }
-            
-            
-        }
-        
     }
 
 }

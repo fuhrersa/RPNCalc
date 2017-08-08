@@ -19,7 +19,7 @@ class Stack {
     //MARK: Properties
     var name: String
     var stack = [Double]()
-    let maxSize = 6
+    let maxSize = 32
     
     var depth: Int {
         get { return stack.count }
