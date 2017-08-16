@@ -188,19 +188,37 @@ class Calculator {
     
     func add() {
         guard checkArg(num: 2, errorString: "ADD Error: Too few arguments") else { return }
-        try! stack.push(stack.pop() + stack.pop())
+        do {
+            try stack.push(stack.pop() + stack.pop())
+        }
+        catch let error { // catch overflow
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
     func subtract() {
         guard checkArg(num: 2, errorString: "SUB Error: Too few arguments") else { return }
-        try! stack.push(-stack.pop() + stack.pop())
+        do {
+            try stack.push(-stack.pop() + stack.pop())
+        }
+        catch let error { // catch overflow
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
     func multiply() {
         guard checkArg(num: 2, errorString: "MUL Error: Too few arguments") else { return }
-        try! stack.push(stack.pop() * stack.pop())
+        do {
+            try stack.push(stack.pop() * stack.pop())
+        }
+        catch let error { // catch overflow
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
-    
+        
     func divide() {
         guard checkArg(num: 2, errorString: "DIV Error: Too few arguments") else { return }
         do {
@@ -315,8 +333,15 @@ class Calculator {
     
     func sq() {
         guard checkArg(num: 1, errorString: "SQ Error: Too few arguments") else { return }
-        let x = try! stack.pop()
-        try? stack.push(x*x)
+        
+        do {
+            let x = try stack.pop()
+            try stack.push(x*x)
+        }
+        catch let error {
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
     func rt() {
@@ -336,24 +361,48 @@ class Calculator {
     func pow() {
         guard checkArg(num: 2, errorString: "POW Error: Too few arguments") else { return }
         
-        let x = try! stack.pop()
-        let y = try! stack.pop()
-        try! stack.push(Darwin.pow(y, x))
+        do {
+            let x = try stack.pop()
+            let y = try stack.pop()
+            try stack.push(Darwin.pow(y, x))
+        }
+        catch let error {
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
     func pi() {
         guard checkArg(num: 0, errorString: "") else { return }
-        try! stack.push(Double.pi)
+        do {
+            try stack.push(Double.pi)
+        }
+        catch let error {
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
     func exp() {
         guard checkArg(num: 1, errorString: "EXP Error: Too few arguments") else { return }
-        try! stack.push(Darwin.exp(stack.pop()))
+        do {
+            try stack.push(Darwin.exp(stack.pop()))
+        }
+        catch let error {
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
     func exp10() {
         guard checkArg(num: 1, errorString: "EXP10 Error: Too few arguments") else { return }
-        try! stack.push(Darwin.pow(10,stack.pop()))
+        do {
+            try stack.push(Darwin.pow(10,stack.pop()))
+        }
+        catch let error {
+            print(error.localizedDescription)
+            state = State.error
+        }
     }
     
 }
